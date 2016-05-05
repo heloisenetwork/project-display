@@ -1,0 +1,32 @@
+.result{
+	color:darkgray;
+	width:2500px;
+}
+
+div .left{
+	float:left;
+	margin-right:10px;
+}
+
+
+
+div .right{
+}
+
+h2 > a{
+	color:dimgreay;
+}
+
+.cat-title{
+	margin-left:10px;
+	font-weight: bold;
+}
+
+.cat-content{
+	margin-left:5px; 
+}
+
+.activePage{
+	font-weight:bold;
+	text-decoration:underline!IMPORTANT;
+}
