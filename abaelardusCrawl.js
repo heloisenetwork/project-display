@@ -15,6 +15,7 @@ var startIndexCrawling=function(){
 			}
 
 	});
+}
 var startDetailCrawling=function(){
 	$.ajax({
 			url: "http://localhost:8666/cpl/details",
