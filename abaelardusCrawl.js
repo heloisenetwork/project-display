@@ -7,10 +7,11 @@ $(document).ready(function(){
 
 var startIndexCrawling=function(){
 	$.ajax({
-					url: "http://project-crawler:8666/cpl/index",
-		success: function(){
-			alert("success");
-		}
+			url: "http://project-crawler:8666/cpl/index",
+			corssDomain:'true',
+			success: function(){
+				alert("success");
+			}
 
 	});
 }
