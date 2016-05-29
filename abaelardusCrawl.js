@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 });
 
-var startIndexCrawling=fucntion(){
+var startIndexCrawling=function(){
 	$.ajax({
 		url: "project-crawler:8666",
 		success: function(){
