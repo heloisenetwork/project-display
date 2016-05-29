@@ -1,13 +1,13 @@
 $(document).ready(function(){
 
 
-	$('#crawlIndex').click(startIndexCrawling);
+	$('#crawlCplIndex').click(startIndexCrawling);
 
 });
 
 var startIndexCrawling=function(){
 	$.ajax({
-		url: "project-crawler:8666",
+					url: "http://project-crawler:8666/cpl/index",
 		success: function(){
 			alert("success");
 		}
