@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 var startIndexCrawling=function(){
 	$.ajax({
-					url: "project-crawler:8666/cpl/index",
+					url: "localhost:8666/cpl/index",
 		success: function(){
 			alert("success");
 		}
