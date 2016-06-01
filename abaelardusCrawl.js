@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
 	$('#crawlCplIndex').click(startIndexCrawling);
 	$('#crawlCplDetails').click(startDetailCrawling);
 
@@ -8,7 +7,7 @@ $(document).ready(function(){
 
 var startIndexCrawling=function(){
 	$.ajax({
-			url: "http://localhost:8666/cpl/index",
+			url: abaelardusConfig.crawlerUrl + abaelardusConfig.cplIndexEndPoint,
 			corssDomain:'true',
 			success: function(){
 				alert("success");
@@ -18,7 +17,7 @@ var startIndexCrawling=function(){
 }
 var startDetailCrawling=function(){
 	$.ajax({
-			url: "http://localhost:8666/cpl/details",
+			url: abaelardusConfig.crawlerUrl + abaelardusConfig.cplDetailsEndPoint,
 			corssDomain:'true',
 			success: function(){
 				alert("success");
