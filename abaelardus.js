@@ -64,7 +64,7 @@ function appendEntryHeadTo(stub, res, rawRes){
 	listEntryHead.text(res.name);
 	listEntryHead.attr('href', res.url);
 	listEntryHead.attr('alt', res.name + " aus dem Katalog von " + rawRes._type);
-	listEntryHead.parent.after('<p>Project: ' + rawRes._type + '</p>');
+	listEntryHead.parent().after('<p>Project: ' + rawRes._type + '</p>');
 
 }
 
