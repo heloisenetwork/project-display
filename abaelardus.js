@@ -15,7 +15,7 @@ var askHeloiseRubbered = function(clickEvent){
 	query = $('#query').val();
 	firstResult = parseInt($('#page').val()) * resultSize;
 	$.ajax({
-		url: "http://localhost:9200/heloise/CPL/_search",
+		url: "http://localhost:9200/heloise/_search",
 		data: {
 			q : query,
 			size: resultSize,
@@ -64,6 +64,7 @@ function appendEntryHeadTo(stub, res, rawRes){
 	listEntryHead.text(res.name);
 	listEntryHead.attr('href', res.url);
 	listEntryHead.attr('alt', res.name + " aus dem Katalog von " + rawRes._type);
+	listEntryHead.parent.after('<p>Project: ' + rawRes._type + '</p>');
 
 }
 
