@@ -15,7 +15,7 @@ var askHeloiseRubbered = function(clickEvent){
 	query = $('#query').val();
 	firstResult = parseInt($('#page').val()) * resultSize;
 	$.ajax({
-		url: "http://localhost:9200/heloise/_search",
+		url: abaelardusConfig.heloiseSearchEndpoint,
 		data: {
 			q : query,
 			size: resultSize,
