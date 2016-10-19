@@ -23,9 +23,10 @@ var getIndice = function(){
 var createButtons = function(data){
 	console.log(data.indices);
 	
+	$('#abaelardus-buttons').append('<button class="startQuery btn btn-outline" data="">Query All Projects</button>  ')
 	for(let index in data.indices){
 		console.log(index);
-		let div = '<input class="startQuery" value="ask ' + index + '" data="' + index + '" type="button" />';
+		let div = '<button class="startQuery btn btn-outline"  data="' + index + '">Project: ' + index + '</button> ';
 		 $('#abaelardus-buttons').append(div);	
 	}
 	$('.startQuery').click(askNewQuestion);
@@ -87,16 +88,24 @@ function appendNewResults(data){
 			
 	}
 	else{
-			resultWrapper.append($('<h2/>').text('Leider habe ich nichts gefunden.'));
+			resultWrapper.append($('<h2/>').text('No result.'));
 	}
 }
 
 function appendEntryHeadTo(stub, res, rawRes){
-	listEntryHead = stub.children('h2').children('a');
-	listEntryHead.text(res.Label);
-	listEntryHead.attr('href', res.URL);
-	listEntryHead.attr('alt', res.Label + " aus dem Katalog von " + rawRes._type);
-	listEntryHead.parent().after('<p>Project: ' + rawRes._type + '</p>');
+
+		
+	if(res.URL) {
+		listEntryHead = stub.children('h2').children('a');
+		listEntryHead.text(res.Label);
+		listEntryHead.attr('href', res.URL);
+		listEntryHead.attr('alt', res.Label + " from " + rawRes._index + " Project");
+	} else {
+
+		listEntryHead = stub.children('h2');
+		listEntryHead.text(res.Label);
+	}	
+	listEntryHead.parent().after('<div class="meta"><b>Project: ' + rawRes._index + '</b></div>');
 
 }
 
@@ -111,24 +120,6 @@ function appendAbstract(stub, res){
 	}
 }
 
-/**
- * Not used since metadata changed
- */
-function appendMetadataTo(stub, res){
-	metadata = resultStub.children('.entrymetadata');
-
-	leftMeta = $('<div class="left" />');
-	leftMeta.append(newMetadataPair("ID",res.id));
-	leftMeta.append(newMetadataPair("Titel",res.title));
-
-	rightMeta = $('<div class="right" />');
-	rightMeta.append(newMetadataPair("Geburtstag/-Ort",res.birthDate + "/" + res.birthCity));
-	rightMeta.append(newMetadataPair("Todestag/-Ort",res.deathDate + "/" + res.deathCity));
-
-	metadata.append(leftMeta);
-	metadata.append(rightMeta);
-
-}
 
 function newMetadataPair(title,content){
 	wrapper = $('<div />'); 

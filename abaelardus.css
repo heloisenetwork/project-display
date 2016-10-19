@@ -1,6 +1,6 @@
 .result{
 	color:darkgray;
-	width:2500px;
+	width:2400px;
 }
 
 div .left{
@@ -13,7 +13,7 @@ div .left{
 div .right{
 }
 
-h2 > a{
+h2, h2 > a{
 	color:dimgreay;
 }
 
@@ -30,3 +30,19 @@ h2 > a{
 	font-weight:bold;
 	text-decoration:underline!IMPORTANT;
 }
+
+.entrymetadata {
+	display: inline;
+}
+
+.meta {
+	display: inline;
+}
+
+.meta div {
+	display: inline;
+}
+
+input#query {margin-bottom:10px}
+
+ul.pagination {margin-top: 20px}
