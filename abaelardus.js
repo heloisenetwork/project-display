@@ -1,5 +1,6 @@
 var resultSkeleton = {};
 var resultSize = 5;
+var indexToAsk = "";
 $('document').ready(function(){
 	getIndice();
 	resultSkeleton = $('.result');
@@ -37,21 +38,20 @@ var alertFail = function(){
 
 var askNewQuestion = function(clickEvent){
 	$('#page').val('0');
+	indexToAsk =  $(clickEvent.target).attr('data');
 	askHeloiseRubbered(clickEvent);
 }
 
 var askHeloiseRubbered = function(clickEvent){
 	clickEvent.preventDefault();
 	query = $('#query').val();
-	let index = $(clickEvent.target).attr('data');
 	firstResult = parseInt($('#page').val()) * resultSize;
 	$.ajax({
-		url: abaelardusConfig.heloiseBaseUrl + index + "/" + abaelardusConfig.heloiseSearchUrlPrefix,
+		url: abaelardusConfig.heloiseBaseUrl + indexToAsk + "/" + abaelardusConfig.heloiseSearchUrlPrefix,
 		data: {
 			q : query,
 			size: resultSize,
-			from: firstResult,
-			},
+			from: firstResult			},
 		crossDomain: "true",
 		jsonp: "false",
 		dataType: "json",
@@ -144,7 +144,7 @@ function newCategoryContent(content){
 	return $('<span />').addClass('cat-content').text(content);
 }
 
-function newPagination(nrOfHits){
+function newPagination(nrOfHits, index){
 	nrOfPages = parseInt((nrOfHits / resultSize)-1);
 	list = $('<ul />').addClass('pagination');
 	for(i = 0; i < nrOfPages; i++ ){
