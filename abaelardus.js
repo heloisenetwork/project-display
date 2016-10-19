@@ -1,9 +1,39 @@
 var resultSkeleton = {};
 var resultSize = 5;
 $('document').ready(function(){
-	$('#startQuery').click(askNewQuestion);
+	getIndice();
 	resultSkeleton = $('.result');
+	
 });
+
+var getIndice = function(){
+	let indexUrl = abaelardusConfig.heloiseBaseUrl + abaelardusConfig.heloiseIndexListEndpoint;
+	$.ajax({
+		url:indexUrl,
+		crossDomain: "true",
+		jsonp: "false",
+		dataType: "json",
+		success:createButtons,
+		error:alertFail
+	});
+}
+
+
+var createButtons = function(data){
+	console.log(data.indices);
+	
+	for(let index in data.indices){
+		console.log(index);
+		let div = '<input class="startQuery" value="ask ' + index + '" data="' + index + '" type="button" />';
+		 $('#abaelardus-buttons').append(div);	
+	}
+	$('.startQuery').click(askNewQuestion);
+	
+
+}
+var alertFail = function(){
+	alert("Something Failed fetching the Index");
+}
 
 var askNewQuestion = function(clickEvent){
 	$('#page').val('0');
@@ -13,9 +43,10 @@ var askNewQuestion = function(clickEvent){
 var askHeloiseRubbered = function(clickEvent){
 	clickEvent.preventDefault();
 	query = $('#query').val();
+	let index = $(clickEvent.target).attr('data');
 	firstResult = parseInt($('#page').val()) * resultSize;
 	$.ajax({
-		url: abaelardusConfig.heloiseSearchEndpoint,
+		url: abaelardusConfig.heloiseBaseUrl + index + "/" + abaelardusConfig.heloiseSearchUrlPrefix,
 		data: {
 			q : query,
 			size: resultSize,
