@@ -76,7 +76,8 @@ function appendNewResults(data){
 			resultStub = $(resultSkeleton.clone());
 			
 			appendEntryHeadTo(resultStub, res, rawRes);		
-			appendMetadataTo(resultStub, res);
+			//appendMetadataTo(resultStub, res);
+			appendAbstract(resultStub, res);
 
 
 			resultWrapper.append(resultStub);
@@ -92,13 +93,27 @@ function appendNewResults(data){
 
 function appendEntryHeadTo(stub, res, rawRes){
 	listEntryHead = stub.children('h2').children('a');
-	listEntryHead.text(res.name);
-	listEntryHead.attr('href', res.url);
-	listEntryHead.attr('alt', res.name + " aus dem Katalog von " + rawRes._type);
+	listEntryHead.text(res.Label);
+	listEntryHead.attr('href', res.URL);
+	listEntryHead.attr('alt', res.Label + " aus dem Katalog von " + rawRes._type);
 	listEntryHead.parent().after('<p>Project: ' + rawRes._type + '</p>');
 
 }
 
+function appendAbstract(stub, res){
+	metadata = resultStub.children('.entrymetadata');
+	for(let prop in res){
+		if(prop!="Label" && prop!="URL"){
+			let meta = $('<div class="meta" />')
+			meta.append(newMetadataPair(prop, res[prop]));
+			metadata.append(meta);
+		}
+	}
+}
+
+/**
+ * Not used since metadata changed
+ */
 function appendMetadataTo(stub, res){
 	metadata = resultStub.children('.entrymetadata');
 
