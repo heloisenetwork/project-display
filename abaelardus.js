@@ -3,7 +3,10 @@ var resultSize = 5;
 var indexToAsk = "";
 $('document').ready(function(){
 	getIndice();
-	resultSkeleton = $('.result');
+	$(".content").load("index-page.html", function() {
+  		resultSkeleton = $('.result');
+	});
+	
 	
 });
 
@@ -72,14 +75,16 @@ function appendNewResults(data){
 
 	results = data.hits.hits;
 	if(results && results.length > 0){
+
 		results.forEach(function(rawRes, index){
 			res = rawRes._source;
 			resultStub = $(resultSkeleton.clone());
-			
-			appendEntryHeadTo(resultStub, res, rawRes);		
-			//appendMetadataTo(resultStub, res);
-			appendAbstract(resultStub, res);
 
+			console.log(resultStub);
+
+			appendEntryHeadTo(resultStub, res, rawRes);		
+
+			appendAbstract(resultStub, res);
 
 			resultWrapper.append(resultStub);
 			
